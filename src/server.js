@@ -1,4 +1,6 @@
 const express = require('express');
+const askRouter = require('./routes/ask');
+//const documentsRouter = require('./routes/documents');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,21 +14,7 @@ app.get('/api/health', (req, res) => {
     });    
 });
 
-app.post('/api/ask', (req, res) => {
-    const { question } = req.body;
-
-    if (!question) {
-        return res.status(400).json({ 
-            error: 'Questão é obrigatória'
-        });
-    }
-
-    res.json({
-        answer: `Você perguntou: ${question}`,
-        sources: [],
-        skill: 'default',
-    });
-});
+app.use('/api/ask', askRouter);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
