@@ -1,10 +1,10 @@
-async function selectSkill(question, retrievedDocs) {
+async function selectSkill({question, retrievedDocs}) {
     const normalized = question.toLowerCase();
 
     if (normalized.includes('férias')) {
         return {
             name: 'hr-faq',
-            systemPrompt: 'Você é um assistente de RH Responda com base nos documentos fornecidos.'
+            systemPrompt: 'Você é um assistente de RH. Responda apenas com base nos documentos fornecidos.'
         };
     }
 
