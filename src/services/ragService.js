@@ -1,10 +1,12 @@
 const documents = require('../data/documents');
+const { getAllDocuments } = require('./documentStore');
 
 function normalize(text) {
     return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 async function searchDocuments({ query, topK = 3 }) {
+    const documents = getAllDocuments();
     const normalizedQuery = normalize(query);
     const queryTeams = normalizedQuery.split(/\s+/).filter(Boolean);
 
